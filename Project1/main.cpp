@@ -1,6 +1,6 @@
 #include<iostream>
 #include<time.h>
-#include"Algorithm_QuickSort.h"
+#include"Algorithm_Sort.h"
 #define SIZE 1000
 
 using namespace std;
@@ -10,7 +10,7 @@ int main()
 	srand((unsigned)time(NULL));
 	for (int i = 0; i < SIZE; i++)
 		a[i] = rand();
-	QuickSort<int>(0, SIZE-1, a);
+	BubbleSort<int>(SIZE, a);
 	for (int i = 0; i < SIZE; ++i)
 		cout << a[i] << endl;
 	return 0;
