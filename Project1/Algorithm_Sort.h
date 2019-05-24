@@ -1,4 +1,4 @@
-//QuickSort, BubbleSort
+//QuickSort, BubbleSort, StraightInsertionSort
 template<class T = int>
 void QuickSort(int l, int r, T arr[])
 {
@@ -36,4 +36,17 @@ void BubbleSort(int lenth, T arr[])
 				arr[j] = arr[j + 1];
 				arr[j + 1] = temp;
 			}
+}
+
+template<class T = int>
+void StraightInsertionSort(int lenth, T arr[])
+{
+	for (int crr = 1; crr < lenth; ++crr)
+	{
+		int p, temp = arr[crr];
+		for (p = crr - 1; p >= 0 && arr[p] > temp; --p)
+			arr[p + 1] = arr[p];
+		arr[p + 1] = temp;
+	}
+
 }

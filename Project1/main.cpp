@@ -10,8 +10,9 @@ int main()
 	srand((unsigned)time(NULL));
 	for (int i = 0; i < SIZE; i++)
 		a[i] = rand();
-	BubbleSort<int>(SIZE, a);
+	StraightInsertionSort<int>(SIZE, a);
 	for (int i = 0; i < SIZE; ++i)
 		cout << a[i] << endl;
+	cin >> a[0];
 	return 0;
 }
