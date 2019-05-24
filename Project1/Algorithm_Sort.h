@@ -1,4 +1,4 @@
-//QuickSort, BubbleSort, StraightInsertionSort
+//QuickSort, BubbleSort, StraightInsertionSort, ShellSort
 template<class T = int>
 void QuickSort(int l, int r, T arr[])
 {
@@ -25,11 +25,11 @@ void QuickSort(int l, int r, T arr[])
 }
 
 template<class T = int>
-void BubbleSort(int lenth, T arr[])
+void BubbleSort(int l, int r, T arr[])
 {
 	T temp;
-	for (int i = 0; i < lenth - 1; ++i)
-		for (int j = 0; j < lenth - 1 - i; ++j)
+	for (int i = l; i < r; ++i)
+		for (int j = l; j < r - i; ++j)
 			if (arr[j] > arr[j + 1])
 			{
 				temp = arr[j];
@@ -39,14 +39,35 @@ void BubbleSort(int lenth, T arr[])
 }
 
 template<class T = int>
-void StraightInsertionSort(int lenth, T arr[])
+void StraightInsertionSort(int l, int r, T arr[])
 {
-	for (int crr = 1; crr < lenth; ++crr)
+	for (int crr = l + 1; crr <= r; ++crr)
 	{
 		int p, temp = arr[crr];
-		for (p = crr - 1; p >= 0 && arr[p] > temp; --p)
+		for (p = crr - 1; p >= l && arr[p] > temp; --p)
 			arr[p + 1] = arr[p];
 		arr[p + 1] = temp;
 	}
 
+}
+
+template<class T = int>
+void ShellSort(int l, int r, T arr[])
+{
+	int increment = r - l + 1;
+	do
+	{	increment = increment / 3 + 1;
+		for (int start = l; start < l + increment; ++start)
+		{
+			int nmax = (r - start) / increment;
+			for (int crr = start + increment; crr <= start + increment * nmax; crr += increment)
+			{
+				int p, temp = arr[crr];
+				for (p = crr - increment; p >= start && arr[p] > temp; p -= increment)
+					arr[p + increment] = arr[p];
+				arr[p + increment] = temp;
+			}
+		}
+		
+	} while (increment > 1);
 }
