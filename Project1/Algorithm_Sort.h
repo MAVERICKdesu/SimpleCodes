@@ -1,5 +1,5 @@
 //QuickSort, BubbleSort, StraightInsertionSort, ShellSort
-template<class T = int>
+template<class T>
 void QuickSort(int l, int r, T arr[])
 {
 	if (l >= r)
@@ -24,7 +24,7 @@ void QuickSort(int l, int r, T arr[])
 	QuickSort(pr + 1, r, arr);
 }
 
-template<class T = int>
+template<class T>
 void BubbleSort(int l, int r, T arr[])
 {
 	T temp;
@@ -38,7 +38,7 @@ void BubbleSort(int l, int r, T arr[])
 			}
 }
 
-template<class T = int>
+template<class T>
 void StraightInsertionSort(int l, int r, T arr[])
 {
 	for (int crr = l + 1; crr <= r; ++crr)
@@ -51,7 +51,7 @@ void StraightInsertionSort(int l, int r, T arr[])
 
 }
 
-template<class T = int>
+template<class T>
 void ShellSort(int l, int r, T arr[])
 {
 	int increment = r - l + 1;
