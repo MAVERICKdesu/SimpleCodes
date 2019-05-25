@@ -78,21 +78,20 @@ void ShellSort(int l, int r, T arr[])
 template<class T>
 void MergeSort(int l, int r, T arr[])
 {
-	if (l != r)
-	{
-		int mid = (l + r) / 2, lenth = r - l + 1;
-		MergeSort(l, mid, arr);
-		MergeSort(mid + 1, r, arr);
-		T* temp = new T[lenth];
-		for (int p1 = l, p2 = mid + 1, i = 0; i < lenth; ++i)
-			if (p1 <= mid && p2 <= r)
-				temp[i] = arr[p1] > arr[p2] ? arr[p2++] : arr[p1++];
+	if (l == r)
+		return;
+	int mid = (l + r) / 2, lenth = r - l + 1;
+	MergeSort(l, mid, arr);
+	MergeSort(mid + 1, r, arr);
+	T* temp = new T[lenth];
+	for (int p1 = l, p2 = mid + 1, i = 0; i < lenth; ++i)
+		if (p1 <= mid && p2 <= r)
+			temp[i] = arr[p1] > arr[p2] ? arr[p2++] : arr[p1++];
+		else
+			if (p1 > mid)
+				temp[i] = arr[p2++];
 			else
-				if (p1 > mid)
-					temp[i] = arr[p2++];
-				else
-					temp[i] = arr[p1++];
-		for (int i = 0; i < lenth; ++i)
-			arr[i + l] = temp[i];
-	}
+				temp[i] = arr[p1++];
+	for (int i = 0; i < lenth; ++i)
+		arr[i + l] = temp[i];
 }
