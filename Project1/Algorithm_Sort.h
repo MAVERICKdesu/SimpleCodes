@@ -1,4 +1,6 @@
-//QuickSort, BubbleSort, StraightInsertionSort, ShellSort
+//QuickSort, BubbleSort, StraightInsertionSort, ShellSort, MergeSort
+#include<iostream>
+using namespace std;
 template<class T>
 void QuickSort(int l, int r, T arr[])
 {
@@ -43,12 +45,12 @@ void StraightInsertionSort(int l, int r, T arr[])
 {
 	for (int crr = l + 1; crr <= r; ++crr)
 	{
-		int p, temp = arr[crr];
+		int p;
+		T temp = arr[crr];
 		for (p = crr - 1; p >= l && arr[p] > temp; --p)
 			arr[p + 1] = arr[p];
 		arr[p + 1] = temp;
 	}
-
 }
 
 template<class T>
@@ -62,7 +64,8 @@ void ShellSort(int l, int r, T arr[])
 			int nmax = (r - start) / increment;
 			for (int crr = start + increment; crr <= start + increment * nmax; crr += increment)
 			{
-				int p, temp = arr[crr];
+				int p;
+				T temp = arr[crr];
 				for (p = crr - increment; p >= start && arr[p] > temp; p -= increment)
 					arr[p + increment] = arr[p];
 				arr[p + increment] = temp;
@@ -70,4 +73,26 @@ void ShellSort(int l, int r, T arr[])
 		}
 		
 	} while (increment > 1);
+}
+
+template<class T>
+void MergeSort(int l, int r, T arr[])
+{
+	if (l != r)
+	{
+		int mid = (l + r) / 2, lenth = r - l + 1;
+		MergeSort(l, mid, arr);
+		MergeSort(mid + 1, r, arr);
+		T* temp = new T[lenth];
+		for (int p1 = l, p2 = mid + 1, i = 0; i < lenth; ++i)
+			if (p1 <= mid && p2 <= r)
+				temp[i] = arr[p1] > arr[p2] ? arr[p2++] : arr[p1++];
+			else
+				if (p1 > mid)
+					temp[i] = arr[p2++];
+				else
+					temp[i] = arr[p1++];
+		for (int i = 0; i < lenth; ++i)
+			arr[i + l] = temp[i];
+	}
 }
