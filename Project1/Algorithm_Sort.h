@@ -11,14 +11,10 @@ void QuickSort(int l, int r, T arr[])
 	while (pl != pr)
 	{
 		while (pl < pr && arr[pl] <= base)
-		{
 			++pl;
-		}
 		arr[pr] = arr[pl];
 		while (pl < pr && arr[pr] >= base)
-		{
 			--pr;
-		}
 		arr[pl] = arr[pr];
 	}
 	arr[pr] = base;
